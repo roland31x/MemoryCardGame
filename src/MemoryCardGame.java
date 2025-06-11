@@ -62,11 +62,9 @@ public class MemoryCardGame extends JFrame {
             int index = i;
             button.addActionListener(e -> handleClick(index));
             buttons[i] = button;
-            ImageIcon icon = CardImageResolver.getIconForValue(cardValues.get(i), 64);
             buttons[i].setIcon(null);
-            buttons[i].setDisabledIcon(null); // Set disabled icon for consistency
+            buttons[i].setDisabledIcon(null);
 
-            // Wrap button in a panel with padding
             JPanel paddedPanel = new JPanel(new BorderLayout());
             paddedPanel.setBorder(BorderFactory.createEmptyBorder(5, 5, 5, 5)); // 5px margin
             paddedPanel.setBackground(gamePanel.getBackground());
@@ -81,12 +79,10 @@ public class MemoryCardGame extends JFrame {
         gameStarted = true;
         startButton.setText("Restart Game");
 
-        // Remove previous action listeners
         for (ActionListener al : startButton.getActionListeners()) {
             startButton.removeActionListener(al);
         }
 
-        // Add new listener for restarting
         startButton.addActionListener(e -> restartGame());
 
         revealAllCards();
@@ -111,10 +107,10 @@ public class MemoryCardGame extends JFrame {
         initializeCards();
 
         // Reset buttons
-        for (int i = 0; i < buttons.length; i++) {
-            buttons[i].setIcon(null);
-            buttons[i].setEnabled(false);
-            buttons[i].setBackground(null); // Reset green highlight
+        for (JButton button : buttons) {
+            button.setIcon(null);
+            button.setEnabled(false);
+            button.setBackground(null); // Reset green highlight
         }
 
         revealAllCards();
